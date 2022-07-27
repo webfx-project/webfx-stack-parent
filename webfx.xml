@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+    <parent name="webfx-parent"/>
+
+    <required-libraries>
+        <webfx-library artifact="dev.webfx:webfx-parent:0.1.0-SNAPSHOT"/>
+    </required-libraries>
+
+    <update-options>
+        <skip-maven-pom/>
+    </update-options>
+
+</project>
