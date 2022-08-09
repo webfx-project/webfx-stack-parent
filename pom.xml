@@ -31,43 +31,14 @@
 
     <properties>
 
-        <teavm.version>0.7.0</teavm.version>
-        <vertx.version>4.3.2</vertx.version>
         <hirakicp.version>5.0.1</hirakicp.version>
         <scramclient.version>2.1</scramclient.version>
         <javawebsocket.version>1.5.3</javawebsocket.version>
-
-        <plugin.javacup.version>11b-20160615-1</plugin.javacup.version>
-        <plugin.jflex.version>1.8.2</plugin.jflex.version>
-        <plugin.teavm.version>${teavm.version}</plugin.teavm.version>
-
-        <plugin.teavm.param.mainClass>TBD</plugin.teavm.param.mainClass>
-        <plugin.teavm.param.targetType>JAVASCRIPT</plugin.teavm.param.targetType>
-        <plugin.teavm.param.minifying>true</plugin.teavm.param.minifying>
-        <plugin.teavm.param.debug>false</plugin.teavm.param.debug>
 
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
-            <dependency>
-                <groupId>org.teavm</groupId>
-                <artifactId>teavm-interop</artifactId>
-                <version>${teavm.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.teavm</groupId>
-                <artifactId>teavm-jso</artifactId>
-                <version>${teavm.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.teavm</groupId>
-                <artifactId>teavm-jso-apis</artifactId>
-                <version>${teavm.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.zaxxer</groupId>
@@ -79,12 +50,6 @@
                 <groupId>org.java-websocket</groupId>
                 <artifactId>Java-WebSocket</artifactId>
                 <version>${javawebsocket.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-core</artifactId>
-                <version>${vertx.version}</version>
             </dependency>
 
             <dependency>
@@ -112,12 +77,6 @@
             </dependency>
 
             <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-web</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-
-            <dependency>
                 <artifactId>client</artifactId>
                 <groupId>com.ongres.scram</groupId>
                 <version>${scramclient.version}</version>
@@ -125,89 +84,5 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-
-                <!--
-                 *********************************
-                 * Java CUP plugin configuration *
-                 *********************************
-                 Java CUP is a parser generator, it produces the parser java code from a .cup grammar file
-                 -->
-                <plugin>
-                    <groupId>com.github.vbmacher</groupId>
-                    <artifactId>cup-maven-plugin</artifactId>
-                    <version>${plugin.javacup.version}</version>
-                </plugin>
-
-                <!--
-                 ******************************
-                 * JFlex plugin configuration *
-                 ******************************
-                 JFlex is a lexical analyzer generator, it produces the lexer java code from a .flex lexical file
-                 -->
-                <plugin>
-                    <groupId>de.jflex</groupId>
-                    <artifactId>jflex-maven-plugin</artifactId>
-                    <version>${plugin.jflex.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <!--
-                 ******************************
-                 * TeaVM plugin configuration *
-                 ******************************
-                 -->
-                <plugin>
-                    <groupId>org.teavm</groupId>
-                    <artifactId>teavm-maven-plugin</artifactId>
-                    <version>${plugin.teavm.version}</version>
-                    <dependencies>
-                        <!-- This dependency is required by TeaVM to emulate subset of Java class library -->
-                        <dependency>
-                            <groupId>org.teavm</groupId>
-                            <artifactId>teavm-classlib</artifactId>
-                            <version>${plugin.teavm.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                            <id>TeaVm-Compile</id>
-                            <goals>
-                                <goal>compile</goal>
-                            </goals>
-                            <phase>process-classes</phase>
-                            <configuration>
-                                <targetType>${plugin.teavm.param.targetType}</targetType>
-                                <!-- Directory where TeaVM should put generated files. This configuration conforms to the settings of the WAR plugin -->
-                                <targetDirectory>${project.build.directory}/teavm/</targetDirectory>
-
-                                <!-- Main class, containing static void main(String[]) -->
-                                <mainClass>${plugin.teavm.param.mainClass}</mainClass>
-
-                                <!-- Whether TeaVM should produce minified JavaScript. Can reduce JavaScript file size more than two times -->
-                                <minifying>${plugin.teavm.param.minifying}</minifying>
-                                <!-- Whether TeaVM should produce debug information for its built-in debugger -->
-                                <debugInformationGenerated>${plugin.teavm.param.debug}</debugInformationGenerated>
-                                <!-- Whether TeaVM should produce source maps file -->
-                                <sourceMapsGenerated>${plugin.teavm.param.debug}</sourceMapsGenerated>
-                                <!-- Whether TeaVM should also put source files into output directory, for compatibility with source maps -->
-                                <sourceFilesCopied>${plugin.teavm.param.debug}</sourceFilesCopied>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
-    </build>
 
 </project>
