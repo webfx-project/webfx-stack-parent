@@ -1,6 +1,7 @@
 name: Deploy to Sonatype repository
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
 
