@@ -32,9 +32,9 @@
 
     <properties>
 
-        <hirakicp.version>5.0.1</hirakicp.version>
-        <scramclient.version>2.1</scramclient.version>
-        <javawebsocket.version>1.5.6</javawebsocket.version>
+        <hirakicp.version>5.1.0</hirakicp.version>
+        <scramclient.version>3.1</scramclient.version>
+        <javawebsocket.version>1.5.7</javawebsocket.version>
 
     </properties>
 
@@ -78,7 +78,7 @@
             </dependency>
 
             <dependency>
-                <artifactId>client</artifactId>
+                <artifactId>scram-client</artifactId>
                 <groupId>com.ongres.scram</groupId>
                 <version>${scramclient.version}</version>
             </dependency>
