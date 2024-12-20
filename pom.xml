@@ -34,7 +34,7 @@
 
         <hirakicp.version>5.1.0</hirakicp.version>
         <scramclient.version>3.1</scramclient.version>
-        <javawebsocket.version>1.5.7</javawebsocket.version>
+        <javawebsocket.version>1.6.0</javawebsocket.version>
 
     </properties>
 
