@@ -33,7 +33,6 @@
     <properties>
 
         <hirakicp.version>6.2.1</hirakicp.version>
-        <scramclient.version>2.1</scramclient.version> <!-- will be 3.1 with Vert.x 5 -->
         <javawebsocket.version>1.6.0</javawebsocket.version>
 
     </properties>
@@ -75,12 +74,6 @@
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-pg-client</artifactId>
                 <version>${vertx.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.ongres.scram</groupId>
-                <artifactId>client</artifactId> <!-- Will be scram-client with Vert.x 5 -->
-                <version>${scramclient.version}</version>
             </dependency>
 
         </dependencies>
