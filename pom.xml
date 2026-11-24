@@ -32,9 +32,14 @@
 
     <properties>
 
-        <hirakicp.version>6.2.1</hirakicp.version>
+        <hirakicp.version>7.1.0</hirakicp.version>
         <javawebsocket.version>1.6.0</javawebsocket.version>
-        <scram.version>3.2</scram.version>
+        <!-- scram-client is declared directly by webfx-stack-db-querysubmit-vertx (version-less), and
+             that direct dependency decides the version the server runs: keep it the version
+             vertx-pg-client ${vertx.version} depends on. 5.2 needs 3.4 for SCRAM channel binding;
+             an older one fails authentication over TLS, and sslmode=prefer then retries in
+             plaintext, which RDS rejects as "no pg_hba.conf entry ... no encryption". -->
+        <scram.version>3.4</scram.version>
 
     </properties>
 
